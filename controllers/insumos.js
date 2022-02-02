@@ -78,17 +78,18 @@ const buscaProducto = async (req = request, res = response) => {
 
     const { termino } = req.params;
 
-    const limit = ( !req.body.limit || req.body.limit<=0 ) ? 5 : req.body.limit;
+    let limite = ( Number(req.query.limit) <= 0 || !req.query.limit ) ? 5 : Number(req.query.limit);
+
     let result = [];
 
     const expReg = new RegExp( termino, 'i'); 
 
     result = await Insumos.find({ textol: expReg , estado: true }, { litm: 1, nombre: 1, _id: 0, textol:1, droga: 1 })
-            .limit( limit )
+        .limit( limite )
 
-    if ( result.length < limit ) { //si no hay nada busco por drogas
+    if ( result.length < limite ) { //si no hay nada busco por drogas
         // console.log('busca por droga');
-        const dif = limit - result.length;
+        const dif = limite - result.length;
 
         result = await Insumos.find({ droga: expReg , estado: true }, { litm: 1, nombre: 1, _id: 0, textol:1, droga: 1 })
             .limit( dif ) 

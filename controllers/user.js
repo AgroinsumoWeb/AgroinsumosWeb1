@@ -67,8 +67,7 @@ const newUser = async (req = request, res= response) => {
     await usuario.save(); 
 
     res.json({
-        msg: 'Alta de user - OK',
-        usuario
+        msg: 'Alta de user - OK'        
     });
 }
 

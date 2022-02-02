@@ -9,7 +9,7 @@ const router = Router();
 
 //se parte de este path {{url}}/api/incremental
 
-router.post('/:termino', [
+router.get('/:termino', [
     validarJWT,
     check('termino', 'Se debe especificar el termino de busqueda - es obligatorio').not().isEmpty(),
     validarCampos
