@@ -42,7 +42,6 @@ const loginUser = async (req = request, res = response) => {
 
         
         res.json({
-            ok:true,
             username,
             estado,
             token
@@ -56,7 +55,7 @@ const loginUser = async (req = request, res = response) => {
     }
 }
 
-const usuarioPost = async (req = request, res= response) => {
+const newUser = async (req = request, res= response) => {
 
     const { username, password } = req.body;
     const usuario = new User( {username, password} ); //crea la instancia en mongo.
@@ -76,5 +75,5 @@ const usuarioPost = async (req = request, res= response) => {
 
 module.exports = {
     loginUser,
-    usuarioPost
+    newUser
 }
